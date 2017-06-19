@@ -1,12 +1,27 @@
 import React from 'react';
+import Nav from './Nav.js'
+import Home from './Home.js'
 import Popular from './Popular.js'
+import Battle from './Battle.js'
+var ReactRouter = require('react-router-dom')
+var Router = ReactRouter.BrowserRouter
+var Route = ReactRouter.Route
+var Switch = ReactRouter.Switch
 
 class App extends React.Component {
   render() {
     return (
-      <div className='container'>
-        <Popular />
-      </div>
+      <Router>
+        <div className='container'>
+          <Nav />
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/battle' component={Battle} />
+            <Route path='/popular' component={Popular} />
+            <Route render={function () { return <h1>Page Not Found</h1> }} />
+          </Switch>
+        </div>
+      </Router>
     )
   }
 }
