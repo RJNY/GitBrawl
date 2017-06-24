@@ -100,17 +100,21 @@ class Results extends React.Component {
     }
 
     return (
-      <div className='row'>
-        <Player
-          label='Winner'
-          score={winner.score}
-          profile={winner.profile}
-        />
-        <Player
-          label='Loser'
-          score={loser.score}
-          profile={loser.profile}
-        />
+      <div className='contestants'>
+        <div className="contestant">
+          <Player
+            label='Winner'
+            score={winner.score}
+            profile={winner.profile}
+          />
+        </div>
+        <div className="contestant">
+          <Player
+            label='Loser'
+            score={loser.score}
+            profile={loser.profile}
+          />
+        </div>
       </div>
     )
   }
