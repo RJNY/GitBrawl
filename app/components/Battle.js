@@ -1,33 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types'
+import PlayerPreview from './PlayerPreview'
 var Link = require('react-router-dom').Link;
-
-function PlayerPreview (props) {
-  return (
-    <div>
-      <div className="column">
-        <img
-          className="avatar"
-          src={props.avatar}
-          alt={'Avatar for ' + props.username}
-        />
-        <h2 className="username">@{props.username}</h2>
-        <button
-          className="reset"
-          onClick={props.onReset.bind(null, props.id)}
-        >
-          Reset
-        </button>
-      </div>
-    </div>
-  )
-}
-
-PlayerPreview.propTypes = {
-  avatar: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired,
-  onReset: PropTypes.func.isRequired,
-}
 
 class PlayerInput extends React.Component {
   constructor (props){
@@ -133,18 +107,24 @@ class Battle extends React.Component {
             onSubmit={this.handleSubmit} />}
           {playerOneImage !== null && <PlayerPreview
             avatar={playerOneImage}
-            username={playerOneName}
-            onReset={this.handleReset}
-            id='playerOne' />}
+            username={playerOneName}>
+            <button className="reset" onClick={this.handleReset.bind(null, 'playerOne')} >
+              Reset
+            </button>
+          </PlayerPreview>
+            }
           {!playerTwoName && <PlayerInput
             id='playerTwo'
             label='Player Two'
             onSubmit={this.handleSubmit} />}
           {playerTwoImage !== null && <PlayerPreview
             avatar={playerTwoImage}
-            username={playerTwoName}
-            onReset={this.handleReset}
-            id='playerTwo' />}
+            username={playerTwoName}>
+            <button className="reset" onClick={this.handleReset.bind(null, 'playerTwo')}>
+              Reset
+            </button>
+          </PlayerPreview>
+            }
         </div>
         {playerOneImage && playerTwoImage && <Link
           className="button"
